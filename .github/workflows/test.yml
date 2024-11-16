@@ -12,7 +12,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - run: |
+          id -a 
           sudo cat /etc/sudoers
-          sudo sysadminctl -addUser myuser -admin
+          sudo chmod -R a+rwx /tmp/ || true
           echo "runner ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/runner
           sudo -u myuser -H bash -e -c "id" 
